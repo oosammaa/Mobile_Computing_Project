@@ -3,6 +3,7 @@ import 'package:bmi_analyzer/Screens/CompleteSignUp.dart';
 import 'package:bmi_analyzer/Screens/LandingScreen.dart';
 import 'package:bmi_analyzer/Screens/Login.dart';
 import 'package:bmi_analyzer/Screens/SignUp.dart';
+import 'package:bmi_analyzer/Screens/ViewFood.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/AddRecord.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         AddRecord.id: (context) => AddRecord(),
         AddFood.id: (context) => AddFood(),
+        ViewFood.id: (context) => ViewFood(),
       },
     );
   }

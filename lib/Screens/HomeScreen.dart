@@ -1,8 +1,10 @@
 import 'package:bmi_analyzer/Screens/AddRecord.dart';
+import 'package:bmi_analyzer/Screens/Login.dart';
 import 'package:bmi_analyzer/main.dart';
 import 'package:flutter/material.dart';
 
 import 'AddFood.dart';
+import 'ViewFood.dart';
 
 class HomeScreen extends StatelessWidget {
   static String id = 'Home Screen';
@@ -142,8 +144,10 @@ class _HomeScreenClassState extends State<HomeScreenClass> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.center,
-                                        child: Text("20/1/2020",
-                                          style: TextStyle(color: Colors.black),),
+                                        child: Text(
+                                          "20/1/2020",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
                                       ),
                                     ),
                                     VerticalDivider(
@@ -153,8 +157,10 @@ class _HomeScreenClassState extends State<HomeScreenClass> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.center,
-                                        child: Text("60 kg",
-                                          style: TextStyle(color: Colors.black),),
+                                        child: Text(
+                                          "60 kg",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -180,8 +186,10 @@ class _HomeScreenClassState extends State<HomeScreenClass> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.center,
-                                        child: Text("170 cm",
-                                          style: TextStyle(color: Colors.black),),
+                                        child: Text(
+                                          "170 cm",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -218,11 +226,13 @@ class _HomeScreenClassState extends State<HomeScreenClass> {
                     ),
                   ),
                   style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6.0),
-                      )),
-                      backgroundColor: MaterialStateProperty.all<Color>(mBlue)),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all<Color>(mBlue),
+                  ),
                 ),
               ),
               Spacer(flex: 1),
@@ -258,7 +268,9 @@ class _HomeScreenClassState extends State<HomeScreenClass> {
             width: double.maxFinite,
             margin: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, ViewFood.id);
+              },
               child: Text(
                 'View Food',
                 style: TextStyle(
@@ -282,7 +294,9 @@ class _HomeScreenClassState extends State<HomeScreenClass> {
             width: double.maxFinite,
             margin: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, Login.id);
+              },
               child: Text(
                 'Logout',
                 style: TextStyle(
