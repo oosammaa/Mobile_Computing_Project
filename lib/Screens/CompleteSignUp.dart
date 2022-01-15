@@ -1,5 +1,9 @@
+import 'package:bmi_analyzer/Firebase/Authentication.dart';
+import 'package:bmi_analyzer/Firebase/LoginValidation.dart';
+import 'package:bmi_analyzer/Model/User.dart';
 import 'package:bmi_analyzer/Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 
@@ -13,16 +17,6 @@ class CompleteSignUp extends StatefulWidget {
 }
 
 class _CompleteSignUpState extends State<CompleteSignUp> {
-  final _form = GlobalKey<FormState>();
-  final _form1 = GlobalKey<FormState>();
-  final _form2 = GlobalKey<FormState>();
-  final _form3 = GlobalKey<FormState>();
-  String _name = '';
-  String _email = '';
-  String _password = '';
-  bool _passwordToggle = false;
-  String _rePassword = '';
-  bool _rePasswordToggle = false;
   int _gender = 1;
   int _weight = 75;
   int _height = 175;
@@ -30,6 +24,7 @@ class _CompleteSignUpState extends State<CompleteSignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final authentication = Provider.of<Authentication>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("BMI Analyzer"),
@@ -74,9 +69,7 @@ class _CompleteSignUpState extends State<CompleteSignUp> {
                     flex: 7,
                     child: Row(
                       children: [
-                        VerticalDivider(
-                          width: 50,
-                        ),
+                        VerticalDivider(width: 50),
                         Expanded(
                           flex: 1,
                           child: ListTile(
@@ -147,9 +140,7 @@ class _CompleteSignUpState extends State<CompleteSignUp> {
                     flex: 7,
                     child: Row(
                       children: [
-                        VerticalDivider(
-                          width: 50,
-                        ),
+                        VerticalDivider(width: 50),
                         Expanded(
                           flex: 3,
                           child: ListTile(
@@ -222,9 +213,7 @@ class _CompleteSignUpState extends State<CompleteSignUp> {
                     flex: 7,
                     child: Row(
                       children: [
-                        VerticalDivider(
-                          width: 50,
-                        ),
+                        VerticalDivider(width: 50),
                         Expanded(
                           flex: 3,
                           child: ListTile(
@@ -297,9 +286,7 @@ class _CompleteSignUpState extends State<CompleteSignUp> {
                     flex: 7,
                     child: Row(
                       children: [
-                        VerticalDivider(
-                          width: 33,
-                        ),
+                        VerticalDivider(width: 33),
                         Expanded(
                           flex: 5,
                           child: TextButton(
@@ -338,7 +325,18 @@ class _CompleteSignUpState extends State<CompleteSignUp> {
                 margin: EdgeInsets.only(top: 80, left: 50, right: 50),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, HomeScreen.id);
+                    if ('${selectedDate.toLocal()}'.split(' ')[0] != '${DateTime.now().toLocal()}'.split(' ')[0]) {
+                      if (_gender == 1) {
+                        User.user.gender = "Male";
+                      } else {
+                        User.user.gender = "Female";
+                      }
+                      User.user.weight = _weight.toString();
+                      User.user.length=_height.toString();
+                      User.user.dof='${selectedDate.toLocal()}'.split(' ')[0];
+                      print(DateTime.now().millisecondsSinceEpoch);
+                      LoginValidation().signUpValidation(context, User.user, authentication);
+                    }
                   },
                   child: Text(
                     'Save Data',

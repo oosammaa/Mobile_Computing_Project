@@ -1,7 +1,9 @@
+import 'package:bmi_analyzer/Firebase/Authentication.dart';
 import 'package:bmi_analyzer/Screens/AddRecord.dart';
 import 'package:bmi_analyzer/Screens/Login.dart';
 import 'package:bmi_analyzer/main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'AddFood.dart';
 import 'ViewFood.dart';
@@ -34,6 +36,12 @@ class HomeScreenClass extends StatefulWidget {
 class _HomeScreenClassState extends State<HomeScreenClass> {
   @override
   Widget build(BuildContext context) {
+    final authentication = Provider.of<Authentication>(context);
+    logout() async {
+      authentication.logout();
+      Navigator.pushReplacementNamed(context, Login.id);
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -295,7 +303,7 @@ class _HomeScreenClassState extends State<HomeScreenClass> {
             margin: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
             child: TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, Login.id);
+                logout();
               },
               child: Text(
                 'Logout',

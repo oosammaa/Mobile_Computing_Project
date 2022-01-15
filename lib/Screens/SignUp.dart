@@ -1,3 +1,4 @@
+import 'package:bmi_analyzer/Model/User.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -15,9 +16,6 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _form = GlobalKey<FormState>();
-  final _form1 = GlobalKey<FormState>();
-  final _form2 = GlobalKey<FormState>();
-  final _form3 = GlobalKey<FormState>();
   String _name = '';
   String _email = '';
   String _password = '';
@@ -28,7 +26,6 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         title: Text("BMI Analyzer"),
         titleTextStyle: TextStyle(fontWeight: FontWeight.bold),
@@ -64,124 +61,117 @@ class _SignUpState extends State<SignUp> {
               ),
               Form(
                 key: _form,
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 5),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextFormField(
-                    textAlignVertical: TextAlignVertical.center,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please fill this field!';
-                      }
-                      return null;
-                    },
-                    autofocus: true,
-                    textInputAction: TextInputAction.next,
-                    // onChanged: (String value) {},
-                    onSaved: (value) => _name = value!,
-                    decoration: InputDecoration(
-                      hintText: 'Name',
-                    ),
-                  ),
-                ),
-              ),
-              Form(
-                key: _form1,
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 5),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextFormField(
-                    textAlignVertical: TextAlignVertical.center,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please fill this field!';
-                      }
-                      return null;
-                    },
-                    autofocus: true,
-                    textInputAction: TextInputAction.next,
-                    // onChanged: (String value) {},
-                    onSaved: (value) => _email = value!,
-                    decoration: InputDecoration(
-                      hintText: 'E-Mail',
-                    ),
-                  ),
-                ),
-              ),
-              Form(
-                key: _form2,
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 5),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextFormField(
-                    textAlignVertical: TextAlignVertical.center,
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please fill this field!';
-                      }
-                      return null;
-                    },
-                    obscureText: !_passwordToggle,
-                    autofocus: true,
-                    textInputAction: TextInputAction.done,
-                    // onChanged: (String value) {},
-                    onSaved: (value) => _password = value!,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.zero,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _passwordToggle = !_passwordToggle;
-                          });
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextFormField(
+                        textAlignVertical: TextAlignVertical.center,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please fill this field!';
+                          }
+                          return null;
                         },
-                        icon: Icon(_passwordToggle
-                            ? Icons.visibility_rounded
-                            : Icons.visibility_off),
-                        color: Theme.of(context).accentColor.withOpacity(0.4),
+                        autofocus: true,
+                        textInputAction: TextInputAction.next,
+                        onSaved: (value) => _name = value!,
+                        decoration: InputDecoration(
+                          hintText: 'Name',
+                        ),
                       ),
-                      hintText: 'Password',
                     ),
-                  ),
-                ),
-              ),
-              Form(
-                key: _form3,
-                child: Container(
-                  margin: EdgeInsets.only(bottom: 40, top: 5),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextFormField(
-                    textAlignVertical: TextAlignVertical.center,
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please fill this field!';
-                      }
-                      return null;
-                    },
-                    obscureText: !_rePasswordToggle,
-                    autofocus: true,
-                    textInputAction: TextInputAction.done,
-                    // onChanged: (String value) {},
-                    onSaved: (value) => _password = value!,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.zero,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _rePasswordToggle = !_rePasswordToggle;
-                          });
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextFormField(
+                        textAlignVertical: TextAlignVertical.center,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please fill this field!';
+                          }
+                          return null;
                         },
-                        icon: Icon(_rePasswordToggle
-                            ? Icons.visibility_rounded
-                            : Icons.visibility_off),
-                        color: Theme.of(context).accentColor.withOpacity(0.4),
+                        autofocus: true,
+                        textInputAction: TextInputAction.next,
+                        onSaved: (value) => _email = value!,
+                        decoration: InputDecoration(
+                          hintText: 'E-Mail',
+                        ),
                       ),
-                      hintText: 'Re-Password',
                     ),
-                  ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextFormField(
+                        textAlignVertical: TextAlignVertical.center,
+                        keyboardType: TextInputType.visiblePassword,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please fill this field!';
+                          }
+                          return null;
+                        },
+                        obscureText: !_passwordToggle,
+                        autofocus: true,
+                        textInputAction: TextInputAction.next,
+                        onSaved: (value) => _password = value!,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _passwordToggle = !_passwordToggle;
+                              });
+                            },
+                            icon: Icon(_passwordToggle
+                                ? Icons.visibility_rounded
+                                : Icons.visibility_off),
+                            color:
+                                Theme.of(context).accentColor.withOpacity(0.4),
+                          ),
+                          hintText: 'Password',
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 40, top: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextFormField(
+                        textAlignVertical: TextAlignVertical.center,
+                        keyboardType: TextInputType.visiblePassword,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please fill this field!';
+                          }
+                          return null;
+                        },
+                        obscureText: !_rePasswordToggle,
+                        autofocus: true,
+                        textInputAction: TextInputAction.done,
+                        onSaved: (value) => _password = value!,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _rePasswordToggle = !_rePasswordToggle;
+                              });
+                            },
+                            icon: Icon(_rePasswordToggle
+                                ? Icons.visibility_rounded
+                                : Icons.visibility_off),
+                            color:
+                                Theme.of(context).accentColor.withOpacity(0.4),
+                          ),
+                          hintText: 'Re-Password',
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Container(
@@ -189,7 +179,28 @@ class _SignUpState extends State<SignUp> {
                 margin: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, CompleteSignUp.id);
+                    setState(() {
+                      if (_form.currentState!.validate()) {
+                        if (doesPasswordsMatch(_password, _rePassword)) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Processing Data ..'),
+                            duration: Duration(seconds: 3),
+                          ));
+                          _form.currentState!.save();
+                          User.user.fullName = _name;
+                          User.user.email = _email;
+                          User.user.password = _password;
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          Navigator.pushReplacementNamed(
+                              context, CompleteSignUp.id);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content:
+                                Text("Password and Re-Password doesn't match."),
+                          ));
+                        }
+                      }
+                    });
                   },
                   child: Text(
                     'CREATE',
@@ -225,5 +236,12 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  bool doesPasswordsMatch(String password, String passwordConfirmation) {
+    if (password == passwordConfirmation) {
+      return true;
+    }
+    return false;
   }
 }

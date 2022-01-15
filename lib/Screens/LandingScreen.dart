@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:bmi_analyzer/Firebase/IsLoggedIn.dart';
 import 'package:bmi_analyzer/Screens/Login.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
@@ -32,7 +33,7 @@ class LandingScreen extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen: Login(),
+      nextScreen: IsLoggedIn(),
       animationDuration: Duration(seconds: 1),
       backgroundColor: mBlue,
       centered: true,
